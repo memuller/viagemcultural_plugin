@@ -1,10 +1,10 @@
 <?php
 	namespace ViagemCultural ;
-	use BasePlugin ;
+	use BasePlugin, SplFileObject ;
 
 	class Plugin extends BasePlugin {
 
-		static $db_version = '0' ;
+		static $db_version = '0.0' ;
 		static $custom_posts = array('Travel', 'Hint', 'Video', 'Plan', 'Help');
 		static $custom_post_formats = array();
 		static $custom_users = array();
@@ -16,6 +16,10 @@
 		static $restrict_for_everyone = true;
 
 		static $migrations = array(
+			'0.1' => 'post_type_field_size',
+			'0.2' => 'drupal_database',
+			'0.3' => 'drupal_content',
+			'0.4' => 'drupal_post_types'
 
 		);
 
@@ -31,6 +35,52 @@
 			add_filter( 'got_rewrite', '__return_true', 999 );
 
 		}
+
+		static function migrate_post_type_field_size(){
+			global $wpdb; 
+			$wpdb->query("ALTER TABLE $wpdb->posts MODIFY post_type VARCHAR(50)");
+		}
+		static function migrate_drupal_database(){
+			global $wpdb; 
+			ini_set('memory_limit','256M');
+			$query = '';
+			$file = new SplFileObject(static::path('/data/drupal.sql'));
+			while(! $file->eof()){
+				$line = $file->current();
+				if(substr($line, 0, 2) == '--' || $line == ''){ continue; }
+				$query .= $line ;					
+				if(substr(trim($line), -1, 1) == ';'){
+					$wpdb->query($query);
+					$query = '';
+				}
+				$file->next();
+			}
+			$file = null ; 
+
+		}
+		static function migrate_drupal_content(){
+			global $wpdb;
+			ini_set('memory_limit', '256M');
+			$query = '';
+			$file = new SplFileObject(static::path('/data/drupal-to-wordpress.sql'));
+			while(! $file->eof()){
+				$line = $file->current();
+				if(substr($line, 0, 2) == '--' || substr($line, 0, 2) == '#' ||  $line == ''){ continue; }
+				
+				$line = str_replace('wp_', $wpdb->prefix, $line);
+				$query .= $line ;					
+				if(substr(trim($line), -1, 1) == ';'){
+					$wpdb->query($query);
+					$query = '';
+				}
+				$file->next();
+			}
+			$file = null ; 
+		}
+		static function migrate_drupal_post_types(){
+			
+		}
+
 	}
 
  ?>
