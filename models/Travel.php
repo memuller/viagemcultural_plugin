@@ -5,6 +5,7 @@
   class Travel extends CustomPost {
 
     static $name = "travel" ;
+    static $has_many = 'videos';
     static $creation_fields = array(
       'label' => 'travel','description' => 'Registro de uma viagem realizada.',
       'public' => true,'show_ui' => true,'show_in_menu' => true,'capability_type' => 'post', 'map_meta_cap' => true,
@@ -15,7 +16,7 @@
     static $labels = array (
       'name' => 'Viagems',
       'singular_name' => 'Viagem',
-      'menu_name' => 'Já Visitamos',
+      'menu_name' => 'Viagems',
       'add_new' => 'Adicionar nova',
       'add_new_item' => 'Adicionar nova viagem',
       'edit' => 'Atualizar',
