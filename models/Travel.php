@@ -27,13 +27,9 @@
 
     static $icon = '\f319' ;
 
-    static $fields = array(
+    static $fields = array();
 
-    ) ;
-
-    static $editable_by = array(
-
-    );
+    static $editable_by = array();
 
     static function build(){
       $class = get_called_class();

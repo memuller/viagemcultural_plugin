@@ -28,11 +28,11 @@
     static $icon = '\f126' ;
 
     static $fields = array(
-
-    ) ;
+      'url' => array('label' => 'URL', 'description' => 'URL do vídeo no Youtube.', 'required' => true)
+    );
 
     static $editable_by = array(
-
+      'Vídeo' => array('fields' => array('url'), 'placing' => 'normal')
     );
 
     static function build(){
