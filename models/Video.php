@@ -5,6 +5,7 @@
   class Video extends CustomPost {
 
     static $name = "video" ;
+    static $belongs_to = 'travel'; 
     static $creation_fields = array(
       'label' => 'video','description' => 'Vídeo no Youtube.',
       'public' => true,'show_ui' => true,'show_in_menu' => true,'capability_type' => 'post', 'map_meta_cap' => true,
@@ -28,11 +29,12 @@
     static $icon = '\f126' ;
 
     static $fields = array(
-      'url' => array('label' => 'URL', 'description' => 'URL do vídeo no Youtube.', 'required' => true)
+      'url' => array('label' => 'URL', 'description' => 'URL do vídeo no Youtube.', 'required' => true),
+      'travel' => array('label' => 'Programa', 'description' => 'programa ao qual o vídeo se refere.', 'type' => 'post_type', 'post_type' => 'travel') 
     );
 
     static $editable_by = array(
-      'Vídeo' => array('fields' => array('url'), 'placing' => 'normal')
+      'Vídeo' => array('fields' => array('url', 'travel'), 'placing' => 'normal')
     );
 
     static function build(){
