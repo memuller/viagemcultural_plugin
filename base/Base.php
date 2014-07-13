@@ -5,7 +5,7 @@
 	class Plugin extends BasePlugin {
 
 		static $db_version = '0.0' ;
-		static $custom_posts = array('Travel', 'Hint', 'Video', 'Plan', 'Help');
+		static $custom_posts = array('Travel', 'Video', 'Help');
 		static $custom_post_formats = array();
 		static $custom_users = array();
 		static $presenters = array();
