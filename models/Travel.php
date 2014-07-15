@@ -5,7 +5,7 @@
   class Travel extends CustomPost {
 
     static $name = "travel" ;
-    static $has_many = 'videos';
+    static $has = array('video');
     static $creation_fields = array(
       'label' => 'travel','description' => 'Registro de uma viagem realizada.',
       'public' => true,'show_ui' => true,'show_in_menu' => true,'capability_type' => 'post', 'map_meta_cap' => true,
@@ -28,9 +28,20 @@
 
     static $icon = '\f319' ;
 
-    static $fields = array();
+    static $fields = array(
+      'broadcast_date' => array('label' => 'Data', 'description' => 'de veiculação do programa.', 'type' => 'date', 'required' => true),
+      'teaser' => array('label' => 'Teaser', 'description' => 'texto de chamada para o programa, antes de sua veiculação; exibido no espaço para Próximo Programa.', 'type' => 'richtext'),
+      'description' => array('label' => 'Descrição Curta', 'description' => 'breve comentário sobre a natureza do programa; exibido junto com o vídeo.', 'type' => 'text')
+    );
 
-    static $editable_by = array();
+    static $tabs = array(
+      'Conteúdo' => array(),
+      'Teasers' => array('teaser', 'description')
+    );
+
+    static $editable_by = array(
+      'Informações' => array('fields' => array('broadcast_date'), 'placement' => 'side')
+    );
 
     static function build(){
       $class = get_called_class();
