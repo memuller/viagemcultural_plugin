@@ -29,7 +29,7 @@
     static $icon = '\f319' ;
 
     static $fields = array(
-      'broadcast_date' => array('label' => 'Data', 'description' => 'de veiculação do programa.', 'type' => 'date', 'required' => true),
+      'next' => array('label' => 'Próximo?', 'description' => 'o próximo programa aparece em destaque na home.', 'type' => 'boolean', 'default' => true),
       'teaser' => array('label' => 'Teaser', 'description' => 'texto de chamada para o programa, antes de sua veiculação; exibido no espaço para Próximo Programa.', 'type' => 'richtext'),
       'description' => array('label' => 'Descrição Curta', 'description' => 'breve comentário sobre a natureza do programa; exibido junto com o vídeo.', 'type' => 'text')
     );
@@ -40,7 +40,7 @@
     );
 
     static $editable_by = array(
-      'Informações' => array('fields' => array('broadcast_date'), 'placement' => 'side')
+      'Informações' => array('fields' => array('next'), 'placement' => 'side')
     );
 
     static function build(){

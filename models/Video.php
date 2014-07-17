@@ -29,17 +29,23 @@
     static $icon = '\f126' ;
 
     static $fields = array(
+      'broadcast_date' => array('label' => 'Data', 'description' => 'de veiculação do programa.', 'type' => 'date', 'required' => true),
       'url' => array('label' => 'URL', 'description' => 'URL do vídeo no Youtube.', 'required' => true),
       'travel' => array('label' => 'Programa', 'description' => 'programa ao qual o vídeo se refere.', 'type' => 'post_type', 'post_type' => 'travel') 
     );
 
     static $editable_by = array(
-      'Vídeo' => array('fields' => array('url', 'travel'), 'placing' => 'normal')
+      'Vídeo' => array('fields' => array('url', 'broadcast_date', 'travel'), 'placing' => 'normal')
     );
 
     static function build(){
       $class = get_called_class();
       parent::build();
+      add_action('viagemcultural-video-save', function($post_id, $object){
+        $travel = new \ViagemCultural\Travel($object['travel']);
+        $travel->next = false; 
+        $travel->save();
+      }, 10, 2);
     }
   }
 
