@@ -47,6 +47,20 @@
       $class = get_called_class();
       parent::build();
     }
+
+    static function next(){
+      $results = static::all(array(
+        'meta_key' => 'next', 'meta_value' => 1
+      ));
+      return !empty($results) ? $results[0] : null ; 
+    }
+
+    static function done(){
+      $results = static::all(array(
+        'meta_key' => 'next', 'meta_value' => 0
+      ));
+      return !empty($results) ? $results[0] : null ; 
+    }
   }
 
  ?>
