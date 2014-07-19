@@ -46,4 +46,5 @@
 	require 'base/Base.php' ;
 	ViagemCultural\Plugin::build();
 
+	require 'vendors/automatic-youtube-video-posts/tern_wp_youtube.php'
 ?>
