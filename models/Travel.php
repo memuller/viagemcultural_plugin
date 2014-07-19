@@ -30,8 +30,8 @@
 
     static $fields = array(
       'next' => array('label' => 'Próximo?', 'description' => 'o próximo programa aparece em destaque na home.', 'type' => 'boolean', 'default' => true),
-      'teaser' => array('label' => 'Teaser', 'description' => 'texto de chamada para o programa, antes de sua veiculação; exibido no espaço para Próximo Programa.', 'type' => 'richtext'),
-      'description' => array('label' => 'Descrição Curta', 'description' => 'breve comentário sobre a natureza do programa; exibido junto com o vídeo.', 'type' => 'text')
+      'teaser' => array('label' => 'Teaser', 'description' => 'texto de chamada para o programa, antes de sua veiculação; exibido no espaço para Próxima Parada.', 'type' => 'editor'),
+      'description' => array('label' => 'Descrição Curta', 'description' => 'breve comentário sobre a natureza do programa; exibido junto com o vídeo.', 'type' => 'editor', 'teeny' => true, 'media_buttons' => false)
     );
 
     static $tabs = array(
@@ -51,13 +51,6 @@
     static function next(){
       $results = static::all(array(
         'meta_key' => 'next', 'meta_value' => 1
-      ));
-      return !empty($results) ? $results[0] : null ; 
-    }
-
-    static function done(){
-      $results = static::all(array(
-        'meta_key' => 'next', 'meta_value' => 0
       ));
       return !empty($results) ? $results[0] : null ; 
     }
