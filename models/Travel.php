@@ -43,9 +43,18 @@
       'Informações' => array('fields' => array('next'), 'placement' => 'side')
     );
 
+    static $collumns = array(
+      'video' => 'Vídeos',
+      'next_collumn' => 'Próxima?'
+    );
+
     static function build(){
       $class = get_called_class();
       parent::build();
+    }
+
+    public function next_collumn(){
+      return $this->next ? 'Sim' : 'Não' ;
     }
 
     static function next(){

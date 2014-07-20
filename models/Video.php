@@ -10,7 +10,7 @@
       'label' => 'video','description' => 'Vídeo no Youtube.',
       'public' => true,'show_ui' => true,'show_in_menu' => true,'capability_type' => 'post', 'map_meta_cap' => true,
       'hierarchical' => false,'rewrite' => array('slug' => 'videos'),'query_var' => true,
-      'supports' => array('custom-fields', 'title', 'thumbnail', 'editor'),
+      'supports' => array('custom-fields', 'title', 'thumbnail'),
       'has_archive' => true, 'taxonomies' => array(), 'menu_position' => 5
     ) ;
     static $labels = array (
@@ -36,6 +36,10 @@
 
     static $editable_by = array(
       'Vídeo' => array('fields' => array('url', 'broadcast_date', 'travel'), 'placing' => 'normal')
+    );
+
+    static $collumns = array(
+      'travel' => 'Viagem'
     );
 
     static function build(){
