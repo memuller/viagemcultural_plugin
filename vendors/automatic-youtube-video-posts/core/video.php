@@ -28,8 +28,8 @@
 //                                **                           **                                 //
 //                                *******************************                                 //
 add_filter('the_content','WP_ayvpp_content');
-add_filter('post_thumbnail_html','WP_ayvpp_thumbnail');
-add_filter('post_thumbnail_size','WP_ayvpp_thumbnail_size');
+#add_filter('post_thumbnail_html','WP_ayvpp_thumbnail');
+#add_filter('post_thumbnail_size','WP_ayvpp_thumbnail_size');
 //add_filter('the_content_feed','WP_ayvpp_content_rss');
 //                                *******************************                                 //
 //________________________________** RENDER VIDEO              **_________________________________//
@@ -83,6 +83,7 @@ function WP_ayvpp_thumbnail($html) {
 	
 	$m = get_post_meta($post->ID,'_tern_wp_youtube_video',true);
 	if($m) {
+
 		$html = '<img src="'.get_bloginfo('wpurl').'/wp-content/plugins/viagemcultural_plugin/vendors/automatic-youtube-video-posts/tools/timthumb.php?src=http://img.youtube.com/vi/'.$m.'/0.jpg&w='.$w.'&h='.$h.'&zc='.$c.'" alt="" title="'.$i.'" />';
 	}
 	return $html;
