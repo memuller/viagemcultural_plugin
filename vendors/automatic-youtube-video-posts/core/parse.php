@@ -245,7 +245,7 @@ function WP_ayvpp_add_import_posts($x=1,$n=20,$r=false) {
 						'tags_input'					=>	$t,
 						'post_date'						=>	gmdate('Y-m-d H:i:s',strtotime($w['published'])),
 						'post_author'					=>	$v['author'],
-						'post_category'					=>	$v['categories']
+						'post_type' 					=> 'video'
 					);
 
 					$a['id'] = WP_ayvpp_insert_post(array_merge($tern_wp_youtube_post_defaults,$a),$i);
@@ -326,6 +326,12 @@ function WP_ayvpp_insert_post($a,$i) {
 	$tern_wp_youtube_array = array_merge($a,array('_tern_wp_youtube_video'=>$i,'_tern_wp_youtube_published'=>$a['post_date']));
 	$p = wp_insert_post($a);
 	WP_ayvpp_add_meta($p);
+	foreach (array('url' => "https://www.youtube.com/watch?v=".$i, 'broadcast_date' => date('d/m/y', strtotime($a['post_date'])), 'travel' => null) as $key => $value) {
+		update_post_meta($p, $key, $value);
+	}
+	somatic_attach_external_image('http://img.youtube.com/vi/'.$i.'/0.jpg', $p, true, '', array(
+		'post_title' => $a['post_title']
+	));
 	unset($GLOBALS['wpdb']->last_result);
 	return $p;
 }
