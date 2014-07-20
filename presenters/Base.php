@@ -28,6 +28,24 @@
 					return $css ;
 				});
 			});
+
+			add_action('admin_notices', function(){
+				$results = \ViagemCultural\Video::all(array('meta_query' => array(
+					'relation' => 'OR',
+					array(
+						'key' => 'travel', 'value' => false, 'type' => 'BOOLEAN'
+					),
+					array(
+						'key' => 'travel', 'compare' => 'NOT EXISTS', 'value' => 'none'
+					)
+				), 'post_status' => 'draft'));
+				if(empty($results)) return null ;
+			?> 
+				<div class='update-nag'>
+					<a href="<?php echo admin_url('/edit.php?post_type=video'); ?>">Novos vídeos encontrados</a>
+					 - associe-os a uma Viagem ou exclua-os.
+				</div>	
+			<?php });
 		}
 	}
 ?>
