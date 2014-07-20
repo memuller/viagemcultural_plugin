@@ -28,13 +28,13 @@
 //////////////////////////////////**                           **///////////////////////////////////
 //                                **                           **                                 //
 //                                *******************************                                 //
-add_action('admin_menu','WP_ayvpp_menu');
+#add_action('admin_menu','WP_ayvpp_menu');
 add_action('admin_enqueue_scripts','WP_ayvpp_scripts');
 add_action('wp_print_scripts','WP_ayvpp_js');
 add_action('admin_enqueue_scripts','WP_ayvpp_styles');
 add_action('wp_enqueue_scripts','WP_ayvpp_styles');
 add_action('delete_post','WP_ayvpp_delete_posts');
-add_action('all_admin_notices','WP_ayvpp_errors');
+#add_action('all_admin_notices','WP_ayvpp_errors');
 //                                *******************************                                 //
 //________________________________** SCRIPTS                   **_________________________________//
 //////////////////////////////////**                           **///////////////////////////////////
@@ -80,7 +80,7 @@ function WP_ayvpp_errors() {
 	global $getWP,$tern_wp_youtube_options;
 	$o = $getWP->getOption('tern_wp_youtube',$tern_wp_youtube_options);
 	if(empty($o['channels'])) {
-		$getWP->addError('Please remember to add at least one channel to automatically import your video posts.');
+		#$getWP->addError('Please remember to add at least one channel to automatically import your video posts.');
 	}
 	
 	$e = $getWP->renderErrors();
