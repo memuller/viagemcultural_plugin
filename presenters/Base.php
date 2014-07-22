@@ -5,6 +5,7 @@
 	class Base extends Presenter {
 
 		static function build(){
+			$presenter = get_called_class() ;
 			parent::build();
 
 			# removes image from the W3TC menu background (so it can use the Dashicons font).
@@ -46,6 +47,28 @@
 					 - associe-os a uma Viagem ou exclua-os.
 				</div>	
 			<?php });
+
+			add_action('admin_menu', function() use($presenter){
+				add_submenu_page('edit.php?post_type=video', 'Configurações do Youtube', 'Configurações', 'manage_options', 'viagemcultural_video_options', function() use($presenter){
+						$options = get_option('tern_wp_youtube');
+						if($_SERVER['REQUEST_METHOD'] == 'POST'){
+							$options['channels'][1]['channel'] = $_POST['viagemcultural_video_options']['channel'];
+							update_option('tern_wp_youtube', $options);
+						}
+						if($_REQUEST['import']){
+							WP_ayvpp_add_posts(1,'*');
+						}
+
+						$presenter::render('admin/video', array(
+							'page' => '?page=viagemcultural_video_options',
+							'options' => array('channel' => $options['channels'][1]['channel'])
+						));
+				});	
+			});
+			add_action('admin_init', function(){
+				register_setting('viagemcultural_video_options', 'viagemcultural_video_options') ;
+			
+			});
 		}
 	}
 ?>

@@ -77,7 +77,6 @@ function WP_ayvpp_add_posts($x=1,$n=20,$f=false) {
 		$tern_wp_youtube_o['is_importing'] = $r = wp_create_nonce('ayvpp-'.time());
 		$tern_wp_youtube_o = $getWP->getOption('tern_wp_youtube',$tern_wp_youtube_o,true);	
 	}
-	
 	//import
 	WP_ayvpp_add_import_posts($x,$n,$r);
 	
@@ -143,7 +142,6 @@ function WP_ayvpp_add_import_posts($x=1,$n=20,$r=false) {
 
 		$c = 0;
 		foreach((array)$tern_wp_youtube_vids as $w) {
-			
 			unset($i,$k,$s,$t,$a,$d,$m,$y,$f,$z,$title);
 			
 			//get video ID
