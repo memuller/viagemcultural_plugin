@@ -9,7 +9,7 @@
     static $creation_fields = array(
       'label' => 'travel','description' => 'Registro de uma viagem realizada.',
       'public' => true,'show_ui' => true,'show_in_menu' => true,'capability_type' => 'post', 'map_meta_cap' => true,
-      'hierarchical' => false,'rewrite' => array('slug' => ''),'query_var' => true,
+      'hierarchical' => false,'rewrite' => array('slug' => 'viagem'),'query_var' => true,
       'supports' => array('custom-fields', 'title', 'thumbnail', 'editor'),
       'has_archive' => true, 'taxonomies' => array(), 'menu_position' => 5
     ) ;
@@ -62,6 +62,15 @@
         'meta_key' => 'next', 'meta_value' => 1
       ));
       return !empty($results) ? $results[0] : null ; 
+    }
+
+    static function others(){
+      $next = static::next();
+      $next = $next ? array($next->ID) : array() ;
+      $results = static::all(array(
+        'post__not_in' => $next, 'posts_per_page' => 3
+      ));
+      return $results ; 
     }
   }
 
