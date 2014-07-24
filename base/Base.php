@@ -4,8 +4,9 @@
 
 	class Plugin extends BasePlugin {
 
-		static $db_version = '0.1' ;
+		static $db_version = '0.6' ;
 		static $custom_posts = array('Travel', 'Video', 'Help');
+		static $custom_taxonomies = array('Region');
 		static $custom_post_formats = array();
 		static $custom_users = array();
 		static $presenters = array();
@@ -20,7 +21,8 @@
 			'0.2' => 'post_type_field_size',
 			'0.3' => 'drupal_database',
 			'0.4' => 'drupal_content',
-			'0.5' => 'drupal_post_types'
+			'0.5' => 'drupal_post_types',
+			'0.6' => 'region_defaults'
 
 		);
 
@@ -35,6 +37,19 @@
 			parent::build();
 			add_filter( 'got_rewrite', '__return_true', 999 );
 
+		}
+
+		static function migrate_region_defaults(){
+			$taxes = array(
+				'Nacional' => array('Centro-Oeste', 'Nordeste', 'Norte', 'Sul', 'Sudeste'),
+				'Internacional' => array('África', 'América', 'Ásia', 'Europa', 'Oceania')
+			);
+			foreach ($taxes as $parent_name => $names) {
+				$parent = wp_insert_term($parent_name, 'region');
+				foreach ($names as $name) {
+					wp_insert_term($name, 'region', array('parent' => $parent['term_id']));
+				}
+			}
 		}
 
 		static function migrate_ayvp_settings(){
