@@ -40,23 +40,7 @@
 		}
 
 		static function migrate_region_defaults(){
-			global $wpdb; 
-			$wpdb->query("DELETE t.*,tt.*,tr.*
-				FROM $wpdb->terms AS t
-				LEFT JOIN $wpdb->term_taxonomy as tt ON tt.term_id = t.term_id
-				LEFT JOIN $wpdb->term_relationships tr ON tr.term_taxonomy_id = tt.term_taxonomy_id
-				WHERE tt.taxonomy = 'region'"
-			);
-			$taxes = array(
-				'Nacional' => array('Centro-Oeste', 'Nordeste', 'Norte', 'Sul', 'Sudeste'),
-				'Internacional' => array('África', 'América', 'Ásia', 'Europa', 'Oceania')
-			);
-			foreach ($taxes as $parent_name => $names) {
-				$parent = wp_insert_term($parent_name, 'region');
-				foreach ($names as $name) {
-					wp_insert_term($name, 'region', array('parent' => $parent['term_id']));
-				}
-			}
+
 		}
 
 		static function migrate_ayvp_settings(){
