@@ -58,6 +58,7 @@
 			$wpdb->query("ALTER TABLE $wpdb->posts MODIFY post_type VARCHAR(50)");
 		}
 		static function migrate_drupal_database(){
+			return true;
 			global $wpdb; 
 			ini_set('memory_limit','256M');
 			$query = '';
@@ -76,6 +77,7 @@
 
 		}
 		static function migrate_drupal_content(){
+			return true;
 			global $wpdb;
 			ini_set('memory_limit', '256M');
 			$query = '';
