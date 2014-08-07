@@ -69,6 +69,13 @@
 				register_setting('viagemcultural_video_options', 'viagemcultural_video_options') ;
 			
 			});
+
+			add_action('request', function($query){
+				if(isset($query['feed'])){
+					$query['post_type'] = array('travel','video');
+				}
+				return $query; 
+			});
 		}
 	}
 ?>
