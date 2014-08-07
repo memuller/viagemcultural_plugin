@@ -31,11 +31,12 @@
     static $fields = array(
       'broadcast_date' => array('label' => 'Data', 'description' => 'de veiculação do programa.', 'type' => 'date', 'required' => true),
       'url' => array('label' => 'URL', 'description' => 'URL do vídeo no Youtube.', 'required' => true),
-      'travel' => array('label' => 'Programa', 'description' => 'programa ao qual o vídeo se refere.', 'type' => 'post_type', 'post_type' => 'travel') 
+      'travel' => array('label' => 'Programa', 'description' => 'programa ao qual o vídeo se refere.', 'type' => 'post_type', 'post_type' => 'travel'),
+      'type' => array('label' => 'Tipo', 'description' => 'natureza do vídeo.', 'type' => 'set', 'values' => array('selected' => 'Melhores Momentos', 'complete' => 'Programa Completo'))
     );
 
     static $editable_by = array(
-      'Vídeo' => array('fields' => array('url', 'broadcast_date', 'travel'), 'placing' => 'normal')
+      'Vídeo' => array('fields' => array('url', 'broadcast_date', 'travel', 'type'), 'placing' => 'normal')
     );
 
     static $collumns = array(
