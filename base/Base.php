@@ -4,7 +4,7 @@
 
 	class Plugin extends BasePlugin {
 
-		static $db_version = '0.6' ;
+		static $db_version = '0.7' ;
 		static $custom_posts = array('Travel', 'Video', 'Help');
 		static $custom_taxonomies = array('Region');
 		static $custom_post_formats = array();
@@ -23,10 +23,10 @@
 		);
 
 		static $query_vars = array(
-
+			'video_filter' => '(melhores|completos)'
 		);
 		static $rewrite_rules = array(
-
+			'videos/%video_filter%' => 'post_type=videos'
 		);
 
 		static function build(){
