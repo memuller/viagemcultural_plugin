@@ -10,7 +10,7 @@
 			'hierarchical' => true, 'has_parent' => true,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array('slug' => 'regiao'),
+			'rewrite' => array('slug' => 'regiao', 'hierarchical' => true),
 			'show_admin_column' => true,
 			'update_count_callback' => '_update_post_term_count'
 		);
