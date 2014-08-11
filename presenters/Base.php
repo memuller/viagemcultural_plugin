@@ -72,7 +72,7 @@
 
 			add_action('request', function($query){
 				if(isset($query['feed'])){
-					$query['post_type'] = array('travel','video');
+					$query['post_type'] = array('travel');
 				}
 				return $query; 
 			});
