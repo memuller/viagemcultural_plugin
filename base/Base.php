@@ -4,7 +4,7 @@
 
 	class Plugin extends BasePlugin {
 
-		static $db_version = '0.7' ;
+		static $db_version = '0.8' ;
 		static $custom_posts = array('Travel', 'Video', 'Help');
 		static $custom_taxonomies = array('Region');
 		static $custom_post_formats = array();
