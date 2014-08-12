@@ -10,7 +10,7 @@
             'label' => 'travel','description' => 'Registro de uma viagem realizada.',
             'public' => true,'show_ui' => true,'show_in_menu' => true,'capability_type' => 'post', 'map_meta_cap' => true,
             'hierarchical' => false,'rewrite' => array('slug' => 'viagem'),'query_var' => true,
-            'supports' => array('custom-fields', 'title', 'thumbnail', 'editor'),
+            'supports' => array('custom-fields', 'title', 'thumbnail', 'editor', 'comments'),
             'has_archive' => true, 'taxonomies' => array(), 'menu_position' => 5
         ) ;
         static $labels = array (
