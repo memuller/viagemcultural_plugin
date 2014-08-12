@@ -26,7 +26,7 @@
 			'video_filter' => '(melhores|completos)'
 		);
 		static $rewrite_rules = array(
-			'videos/%video_filter%' => 'post_type=videos'
+			'videos/%video_filter%/' => 'post_type=video'
 		);
 
 		static function build(){

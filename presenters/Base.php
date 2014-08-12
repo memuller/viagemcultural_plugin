@@ -4,9 +4,27 @@
 
 	class Base extends Presenter {
 
+		static $actions = array(
+			#'filter_videos' => array('archive' => 'video')
+		);
+
 		static function build(){
 			$presenter = get_called_class() ;
 			parent::build();
+
+			add_action('pre_get_posts', function($query){
+				global $wp_query; $vars = &$wp_query->query_vars;
+
+				if(!$query->is_main_query()) return ; 
+				if(!$vars['is_archive'] && !$vars['post_type'] == 'video') return ;
+				
+				if(isset($vars['video_filter'])){
+					$query->set('meta_key', 'type');
+					$query->set('meta_value', 
+						$vars['video_filter'] == 'melhores' ? 'selected' : 'complete'
+					);
+				}
+			});
 
 			# removes image from the W3TC menu background (so it can use the Dashicons font).
 			add_action('admin_footer', function(){?>
