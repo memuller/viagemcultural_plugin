@@ -53,7 +53,7 @@
           echo 'Programa Completo';
           break;
         default:
-          echo '-';
+          echo '--';
           break;
       }
     }
