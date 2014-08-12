@@ -40,8 +40,23 @@
     );
 
     static $collumns = array(
-      'travel' => 'Viagem'
+      'travel' => 'Viagem',
+      'type_collumn' => 'Tipo'
     );
+
+    public function type_collumn(){
+      switch ($this->type) {
+        case 'selected':
+          echo 'Melhores Momentos';
+          break;
+        case 'complete':
+          echo 'Programa Completo';
+          break;
+        default:
+          echo '-';
+          break;
+      }
+    }
 
     static function build(){
       $class = get_called_class();
