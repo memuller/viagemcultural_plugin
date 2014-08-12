@@ -21,7 +21,7 @@
 				if(isset($vars['video_filter'])){
 					$query->set('meta_key', 'type');
 					$query->set('meta_value', 
-						$vars['video_filter'] == 'melhores' ? 'selected' : 'complete'
+						$vars['video_filter'] == 'melhores-momentos' ? 'selected' : 'complete'
 					);
 				}
 			});
