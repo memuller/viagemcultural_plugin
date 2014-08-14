@@ -87,7 +87,7 @@
                     foreach (array_merge($children, $parents) as $term) {
                         if(sizeof($related) > $ammount) break;
                         foreach(static::all(array($tax => $term->slug, 'not' => array_merge(array($this), $related))) as $post) {
-                            if(sizeof($related) > $ammount) break;
+                            if(sizeof($related) >= $ammount) break;
                             $related[]= $post ;    
                         }
 
@@ -103,7 +103,7 @@
                     'not' => array_merge($more, array($this->ID), $related)  
                 )));
                 foreach($more as $post) {
-                    if(sizeof($related) > $ammount) break;
+                    if(sizeof($related) >= $ammount) break;
                     $related[]= $post ;
                 }
             }
