@@ -30,7 +30,7 @@
         static $taxonomies = array('region');
         static $fields = array(
             'next' => array('label' => 'Próximo?', 'description' => 'o próximo programa aparece em destaque na home.', 'type' => 'boolean', 'default' => true),
-            'teaser' => array('label' => 'Teaser', 'description' => 'texto de chamada para o programa, antes de sua veiculação; exibido no espaço para Próxima Parada.', 'type' => 'editor'),
+            'teaser' => array('label' => 'Teaser', 'description' => 'texto de chamada para o programa, antes de sua veiculação; exibido no espaço para Próxima Parada.', 'type' => 'editor', 'height' => 500),
             'description' => array('label' => 'Descrição Curta', 'description' => 'breve comentário sobre a natureza do programa; exibido junto com o vídeo.', 'type' => 'editor', 'teeny' => true, 'media_buttons' => false)
         );
 
